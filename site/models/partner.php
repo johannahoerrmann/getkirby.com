@@ -19,6 +19,17 @@ class PartnerPage extends Page
 		return $this->images()->findBy('name', 'card');
 	}
 
+	public function country(): Field
+	{
+		$location = $this->location()->value();
+
+		if ($position = mb_strrpos($location, ',')) {
+			return parent::country()->value(trim(Str::substr($location, $position + 1)));
+		}
+
+		return parent::country()->value($location);
+	}
+
 	public function isPlusPartner(): bool
 	{
 		return Str::endsWith($this->package(), '+');
@@ -61,5 +72,10 @@ class PartnerPage extends Page
 		}
 
 		return $this->pluginpage()->toPage()?->children()->limit(6);
+	}
+
+	public function type(): Field
+	{
+		return parent::type()->value($this->isSoloPartner() ? 'solo' : 'team');
 	}
 }

@@ -1,4 +1,9 @@
-<a href="<?= $partner->url() ?>" data-country="<?= $partner->country() ?>" data-type="<?= $partner->type() ?>">
+<a
+	href="<?= $partner->url() ?>"
+	data-country="<?= $partner->country() ?>"
+	data-languages="<?= implode(',', $partner->languages()->split(',')) ?>"
+	data-type="<?= $partner->type() ?>"
+>
 	<article class="columns items-center"
 					 style="--columns: 4; --columns-sm: 4; --gap: var(--spacing-6)">
 		<figure style="--span: 1; --aspect-ratio: 1/1; overflow: hidden">

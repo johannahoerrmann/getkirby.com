@@ -1,4 +1,9 @@
-<a href="<?= $partner->url() ?>" data-country="<?= $partner->country() ?>" data-type="<?= $partner->type() ?>">
+<a
+	href="<?= $partner->url() ?>"
+	data-country="<?= $partner->country() ?>"
+	data-languages="<?= implode(',', $partner->languages()->split(',')) ?>"
+	data-type="<?= $partner->type() ?>"
+>
 	<article>
 		<p class="flex items-center text-xs" style="gap: var(--spacing-1)">
 			<?= ucfirst($partner->type()) ?>

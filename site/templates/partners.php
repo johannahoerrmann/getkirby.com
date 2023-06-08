@@ -70,6 +70,18 @@
 
 		<div class="partners-filters">
 			<h2>Filter</h2>
+			<select data-field="languages" data-multiple="true" aria-label="Language filter">
+				<option value="_all">All languages</option>
+				<option>Czech</option>
+				<option>Dutch</option>
+				<option>English</option>
+				<option>French</option>
+				<option>German</option>
+				<option>Hungarian</option>
+				<option>Italian</option>
+				<option>Slovak</option>
+				<option>Turkish</option>
+			</select>
 			<select data-field="country" aria-label="Country filter">
 				<option value="_all">All countries</option>
 				<optgroup label="Asia">
@@ -114,13 +126,27 @@ document.querySelectorAll('.partners-filters select').forEach((select) => {
 	// field in the dataset of each partner this select filters by
 	const field = select.dataset.field;
 
+	// whether this filter can match any of multiple comma-separated values
+	const multiple = select.dataset.multiple === 'true';
+
 	select.addEventListener('input', (event) => {
 		// filter all nodes that have the data attribute we are filtering by
 		document.querySelectorAll('article [data-' + field + ']').forEach((partner) => {
 			// keep an object of all filter fields that *don't* match this partner
 			partner.partnerFilters ||= {};
 
-			if (partner.dataset[field] === select.value || select.value === '_all') {
+			// check if the partner matches the filter (depending on the filter type)
+			let matches = null;
+			if (multiple === true) {
+				const options = partner.dataset[field].split(',');
+
+				matches = options.includes(select.value) === true;
+			} else {
+				matches = partner.dataset[field] === select.value;
+			}
+
+			// update the object of filter fields accordingly
+			if (matches === true || select.value === '_all') {
 				delete partner.partnerFilters[field];
 			} else {
 				partner.partnerFilters[field] = false;

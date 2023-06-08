@@ -82,22 +82,11 @@
 				<option>Slovak</option>
 				<option>Turkish</option>
 			</select>
-			<select data-field="country" aria-label="Country filter">
-				<option value="_all">All countries</option>
-				<optgroup label="Asia">
-					<option>Turkey</option>
-				</optgroup>
-				<optgroup label="Europe">
-					<option>Belgium</option>
-					<option>Czech Republic</option>
-					<option>Germany</option>
-					<option>Hungary</option>
-					<option>Ireland</option>
-					<option>Italy</option>
-				</optgroup>
-				<optgroup label="North America">
-					<option>Canada</option>
-				</optgroup>
+			<select data-field="region" aria-label="Region filter">
+				<option value="_all">All regions</option>
+				<option>Asia</option>
+				<option>Europe</option>
+				<option>North America</option>
 			</select>
 			<select data-field="type" aria-label="Business type filter">
 				<option value="_all">All business types</option>

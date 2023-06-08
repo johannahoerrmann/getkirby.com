@@ -1,6 +1,6 @@
 <a
 	href="<?= $partner->url() ?>"
-	data-country="<?= $partner->country() ?>"
+	data-region="<?= $partner->region() ?>"
 	data-languages="<?= implode(',', $partner->languages()->split(',')) ?>"
 	data-type="<?= $partner->type() ?>"
 >

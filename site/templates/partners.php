@@ -95,13 +95,13 @@
 			</select>
 		</div>
 	</header>
-	<section class="partners-plus columns mb-42" style="--gap: var(--spacing-24)">
+	<section class="partners-section partners-plus columns mb-42" style="--gap: var(--spacing-24)">
 		<?php foreach ($plus as $partner) : ?>
 			<?php snippet('templates/partners/partner.plus', ['partner' => $partner]) ?>
 		<?php endforeach ?>
 	</section>
 
-	<section class="partners columns mb-42"
+	<section class="partners-section partners columns mb-42"
 					 style="--column-gap: var(--spacing-24); --row-gap: var(--spacing-12)">
 		<?php foreach ($standard as $partner) : ?>
 			<?php snippet('templates/partners/partner', ['partner' => $partner]) ?>
@@ -147,6 +147,18 @@ document.querySelectorAll('.partners-filters select').forEach((select) => {
 				partner.style.display = 'none';
 			} else {
 				partner.style.display = null;
+			}
+		});
+
+		// hide sections that have no visible children with the current filters
+		// (hides the duplicated margins)
+		document.querySelectorAll('.partners-section').forEach((section) => {
+			// first make it visible if it was hidden before so we can measure its height
+			section.style.display = null;
+
+			// check if there is content within the section; otherwise hide it (again)
+			if (section.offsetHeight === 0) {
+				section.style.display = 'none';
 			}
 		});
 	});
